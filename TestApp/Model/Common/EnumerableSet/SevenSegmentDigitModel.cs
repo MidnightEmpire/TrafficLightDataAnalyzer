@@ -70,7 +70,7 @@ namespace TestApp.Model.Common.EnumerableSet
         private static List<SevenSegmentDigitModel> _allDigits;
 
         /// <summary>
-        /// Register digit value 7-segment representation model in all digit value 7-segment representation model collection method
+        /// Register digit value 7-segment representation model in all digit value 7-segment representation models collection method
         /// </summary>
         /// <param name="sevenSegmentDigitModel">Digit value 7-segment representation model reference value to register</param>
         private static void registerSevenSegmentDigit(SevenSegmentDigitModel sevenSegmentDigitModel)
@@ -206,7 +206,8 @@ namespace TestApp.Model.Common.EnumerableSet
                 return false;
             }
 
-            return this.BinaryCode == other.BinaryCode;
+            return this.BinaryCode == other.BinaryCode &&
+                   this.Value == other.Value;
         }
 
         /// <summary>

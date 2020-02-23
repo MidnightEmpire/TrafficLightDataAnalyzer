@@ -1,4 +1,5 @@
 ﻿using System;
+using TestApp.Extension;
 using TestApp.Model.Common.EnumerableSet;
 
 namespace TestApp
@@ -7,12 +8,15 @@ namespace TestApp
     {
         static void Main(string[] args)
         {
-            var allDigits = SevenSegmentDigitModel.AllDigits;
-
-            foreach (var digit in allDigits)
+            SevenSegmentDigitModel.AllDigits.ForEach((digit) =>
             {
                 Console.WriteLine(digit);
-            }
+            });
+
+            TrafficLightColorModel.AllColors.ForEach((color) =>
+            {
+                Console.WriteLine(color);
+            });
         }
     }
 }

@@ -6,15 +6,15 @@ using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 namespace TrafficLightDataAnalyzer.Test.Unit
 {
     /// <summary>
-    /// Temporary stub fixture
+    /// Seven segment digit model tests fixture
     /// </summary>
     [TestFixture]
-    class SevenSegmentDigitModelFixture
+    internal class SevenSegmentDigitModelFixture
     {
         /// <summary>
-        /// Equal 7-segment digit models test case collection provider
+        /// Equal 7-segment digit model test case collection provider
         /// </summary>
-        private static IEnumerable<TestCaseData> EqualSevenSegmentDigitModelsTestCaseCollection
+        private static IEnumerable<TestCaseData> EqualSevenSegmentDigitModelTestCaseCollection
         {
             get
             {
@@ -33,22 +33,23 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         }
 
         /// <summary>
-        /// Inqqual 7-segment digit models test case collection provider
+        /// Inequal 7-segment digit model test case collection provider
         /// </summary>
-        private static IEnumerable<TestCaseData> InequalSevenSegmentDigitModelsTestCaseCollection
+        private static IEnumerable<TestCaseData> InequalSevenSegmentDigitModelTestCaseCollection
         {
             get
             {
                 var allDigits = SevenSegmentDigitModel.AllDigits;
+                var allDigitsCount = allDigits.Count;
 
-                for (int i = 0; i < 11; ++i)
+                for (int i = allDigitsCount + 1; --i >= 0;)
                 {
-                    for (int j = 0; j < 11; ++j)
+                    for (int j = allDigitsCount + 1; --j >= 0;)
                     {
                         if (i != j)
                         {
-                            var firstDigit = i < 10 ? allDigits[i] : null;
-                            var secondDigit = j < 10 ? allDigits[j] : null;
+                            var firstDigit = i == allDigitsCount ? null : allDigits[i];
+                            var secondDigit = j == allDigitsCount ? null : allDigits[j];
 
                             yield return new TestCaseData(firstDigit, secondDigit);
                         }
@@ -74,7 +75,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// <param name="first">First 7-segment digit model to compare</param>
         /// <param name="second">Second 7-segment digit model to compare</param>
         [Test]
-        [TestCaseSource("EqualSevenSegmentDigitModelsTestCaseCollection")]
+        [TestCaseSource("EqualSevenSegmentDigitModelTestCaseCollection")]
         public void SevenSegmentDigitModel_WhenCheckEquality_ReturnProperEqualityResult(SevenSegmentDigitModel first, SevenSegmentDigitModel second)
         {
             Assert.IsTrue(first == second);
@@ -86,7 +87,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// <param name="first">First 7-segment digit model to compare</param>
         /// <param name="second">Second 7-segment digit model to compare</param>
         [Test]
-        [TestCaseSource("InequalSevenSegmentDigitModelsTestCaseCollection")]
+        [TestCaseSource("InequalSevenSegmentDigitModelTestCaseCollection")]
         public void SevenSegmentDigitModel_WhenCheckInequality_ReturnProperInequalityResult(SevenSegmentDigitModel first, SevenSegmentDigitModel second)
         {
             Assert.IsTrue(first != second);

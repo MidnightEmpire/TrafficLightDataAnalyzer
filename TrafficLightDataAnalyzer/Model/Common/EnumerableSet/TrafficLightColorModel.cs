@@ -95,7 +95,7 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
             {
                 var matchedColor = TrafficLightColorModel._allColors.Find((color) => name.Equals(color.Name, comparisonType));
 
-                if (!(matchedColor is null))
+                if (matchedColor != null)
                 {
                     return matchedColor;
                 }

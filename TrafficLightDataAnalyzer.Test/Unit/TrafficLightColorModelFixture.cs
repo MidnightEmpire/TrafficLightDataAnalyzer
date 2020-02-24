@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using TrafficLightDataAnalyzer.Common;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
@@ -52,6 +53,32 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         }
 
         /// <summary>
+        /// Valid traffic light color model names with corresponding models test case collection provider
+        /// </summary>
+        private static IEnumerable<TestCaseData> ValidTrafficLightColorModelNamesTestCaseCollection
+        {
+            get
+            {
+                yield return new TestCaseData("Red", TrafficLightColorModel.Red);
+                yield return new TestCaseData("Green", TrafficLightColorModel.Green);
+            }
+        }
+
+        /// <summary>
+        /// Invalid traffic light color model names test case collection provider
+        /// </summary>
+        private static IEnumerable<TestCaseData> InvalidTrafficLightColorModelNamesTestCaseCollection
+        {
+            get
+            {
+                yield return new TestCaseData("unknowncolor");
+                yield return new TestCaseData("_sdf_1");
+                yield return new TestCaseData(string.Empty);
+                yield return new TestCaseData(null);
+            }
+        }
+
+        /// <summary>
         /// Equality checking method
         /// </summary>
         /// <param name="first">First traffic light color model to compare</param>
@@ -73,6 +100,60 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         public void TrafficLightColorModel_WhenCheckInequality_ReturnProperInequalityResult(TrafficLightColorModel first, TrafficLightColorModel second)
         {
             Assert.IsTrue(first != second);
+        }
+
+        /// <summary>
+        /// Correct name finding checking method
+        /// </summary>
+        /// <param name="colorName">Correct traffic light color name value</param>
+        /// <param name="expectedColorModel">Expected traffic light color model class reference value</param>
+        [Test]
+        [TestCaseSource("ValidTrafficLightColorModelNamesTestCaseCollection")]
+        public void TrafficLightColorModel_WhenSearchingByValidColorName_ReturnProperColorModel(string colorName, TrafficLightColorModel expectedColorModel)
+        {
+            var foundColorModel = TrafficLightColorModel.FindByName(colorName);
+
+            Assert.AreEqual(expectedColorModel, foundColorModel);
+        }
+
+        /// <summary>
+        /// Correct name finding with ignore case checking method
+        /// </summary>
+        /// <param name="colorName">Correct traffic light color name value</param>
+        /// <param name="expectedColorModel">Expected traffic light color model class reference value</param>
+        [Test]
+        [TestCaseSource("ValidTrafficLightColorModelNamesTestCaseCollection")]
+        public void TrafficLightColorModel_WhenSearchingByValidColorNameWithIgnoredCase_ReturnProperColorModel(string colorName, TrafficLightColorModel expectedColorModel)
+        {
+            var foundColorModel = TrafficLightColorModel.FindByName(colorName?.ToLower(), StringComparison.OrdinalIgnoreCase);
+
+            Assert.AreEqual(expectedColorModel, foundColorModel);
+        }
+
+        /// <summary>
+        /// Incorrect name finding checking method
+        /// </summary>
+        /// <param name="colorName">Incorrect color name value</param>
+        [Test]
+        [TestCaseSource("InvalidTrafficLightColorModelNamesTestCaseCollection")]
+        public void TrafficLightColorModel_WhenSearchingByInvalidColorName_ReturnUndefinedColorModel(string colorName)
+        {
+            var foundColorModel = TrafficLightColorModel.FindByName(colorName);
+
+            Assert.AreEqual(TrafficLightColorModel.Undefined, foundColorModel);
+        }
+
+        /// <summary>
+        /// Incorrect name finding with ignored case checking method
+        /// </summary>
+        /// <param name="colorName">Incorrect color name value</param>
+        [Test]
+        [TestCaseSource("InvalidTrafficLightColorModelNamesTestCaseCollection")]
+        public void TrafficLightColorModel_WhenSearchingByInvalidColorNameWithIgnoredCase_ReturnUndefinedColorModel(string colorName)
+        {
+            var foundColorModel = TrafficLightColorModel.FindByName(colorName, StringComparison.OrdinalIgnoreCase);
+
+            Assert.AreEqual(TrafficLightColorModel.Undefined, foundColorModel);
         }
     }
 }

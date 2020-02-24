@@ -12,6 +12,8 @@ namespace TrafficLightDataAnalyzer.Test.Unit
     [TestFixture]
     internal class TrafficLightColorModelFixture
     {
+        #region TestCaseSource
+
         /// <summary>
         /// Equal traffic light color model test case collection provider
         /// </summary>
@@ -77,6 +79,8 @@ namespace TrafficLightDataAnalyzer.Test.Unit
                 yield return new TestCaseData(null);
             }
         }
+
+        #endregion
 
         /// <summary>
         /// Equality checking method

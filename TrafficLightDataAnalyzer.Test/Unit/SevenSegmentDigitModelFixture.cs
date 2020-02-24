@@ -11,6 +11,8 @@ namespace TrafficLightDataAnalyzer.Test.Unit
     [TestFixture]
     internal class SevenSegmentDigitModelFixture
     {
+        #region TestCaseSource
+
         /// <summary>
         /// Equal 7-segment digit model test case collection provider
         /// </summary>
@@ -57,6 +59,8 @@ namespace TrafficLightDataAnalyzer.Test.Unit
                 }
             }
         }
+
+        #endregion
 
         /// <summary>
         /// 7-segment digit model amount checking method

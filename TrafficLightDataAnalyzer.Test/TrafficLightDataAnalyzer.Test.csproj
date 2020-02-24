@@ -16,4 +16,8 @@
     <Folder Include="Integrational\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TrafficLightDataAnalyzer\TrafficLightDataAnalyzer.csproj" />
+  </ItemGroup>
+
 </Project>

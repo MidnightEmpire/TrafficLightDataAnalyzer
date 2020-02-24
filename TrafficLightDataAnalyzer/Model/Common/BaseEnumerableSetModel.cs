@@ -98,7 +98,7 @@ namespace TrafficLightDataAnalyzer.Model.Common
                 !(second is TChildSet)
             ) {
                 // Maybe, exception will be better solution
-                return false;
+                return true;
             }
 
             if (object.ReferenceEquals(first, null))

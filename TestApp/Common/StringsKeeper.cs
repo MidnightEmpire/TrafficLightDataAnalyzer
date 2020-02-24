@@ -29,6 +29,21 @@
             /// Observation sequence is already finished one exception message compution property
             /// </summary>
             public static string ObservationIsAlreadyFinished => "The red observation should be the last";
+
+            /// <summary>
+            /// Observation has invalid traffic light color format exception message compution property
+            /// </summary>
+            public static string InvalidTrafficLightColor => "Observation has invalid traffic light color format";
+
+            /// <summary>
+            /// Observation has invalid seven segment binary code string format exception message compution property
+            /// </summary>
+            public static string InvalidDigitCode => "Observation has invalid digit code format";
+
+            /// <summary>
+            /// Observation has invalid seven segment binary codes strings amount exception message compution property
+            /// </summary>
+            public static string InvalidDigitCodesAmount => "Observation has invalid digit codes amount";
         }
     }
 }

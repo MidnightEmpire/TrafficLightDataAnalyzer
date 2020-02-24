@@ -23,7 +23,7 @@ namespace TestApp.Model.Common
         /// Determines whether the specified object is equal to the current object
         /// </summary>
         /// <param name="otherObject">The object to compare with the current object</param>
-        /// <returns>True if the specified object is equal to the current object. Otherwise, returns false</returns>
+        /// <returns>True if the specified object is equal to the current object. Otherwise, return false</returns>
         public override bool Equals(object otherObject)
         {
             if (object.ReferenceEquals(null, otherObject))
@@ -48,7 +48,7 @@ namespace TestApp.Model.Common
         /// Indicates whether the current object is equal to another object of the same type
         /// </summary>
         /// <param name="other">An object to compare with this object</param>
-        /// <returns>True if current object is equal to the other parameter. Otherwise, returns false</returns>
+        /// <returns>True if current object is equal to the other parameter. Otherwise, return false</returns>
         public abstract bool Equals(TChildSet other);
 
         /// <summary>

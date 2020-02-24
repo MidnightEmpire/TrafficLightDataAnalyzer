@@ -74,7 +74,7 @@ namespace TestApp.Model.Common.EnumerableSet
             {
                 var matchedColor = TrafficLightColorModel._allColors.Find((color) => name.Equals(color.Name));
 
-                if (matchedColor != null)
+                if (!(matchedColor is null))
                 {
                     return matchedColor;
                 }
@@ -95,7 +95,7 @@ namespace TestApp.Model.Common.EnumerableSet
             {
                 var matchedColor = TrafficLightColorModel._allColors.Find((color) => name.Equals(color.Name, comparisonType));
 
-                if (matchedColor != null)
+                if (!(matchedColor is null))
                 {
                     return matchedColor;
                 }

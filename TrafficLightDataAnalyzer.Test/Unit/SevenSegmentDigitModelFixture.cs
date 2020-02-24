@@ -18,6 +18,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         {
             get
             {
+                yield return new TestCaseData(NullInstance.Of<SevenSegmentDigitModel>(), NullInstance.Of<SevenSegmentDigitModel>());
                 yield return new TestCaseData(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit0);
                 yield return new TestCaseData(SevenSegmentDigitModel.Digit1, SevenSegmentDigitModel.Digit1);
                 yield return new TestCaseData(SevenSegmentDigitModel.Digit2, SevenSegmentDigitModel.Digit2);
@@ -38,8 +39,6 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         {
             get
             {
-                yield return new TestCaseData(null, null);
-
                 var allDigits = SevenSegmentDigitModel.AllDigits;
 
                 for (int i = 0; i < 11; ++i)

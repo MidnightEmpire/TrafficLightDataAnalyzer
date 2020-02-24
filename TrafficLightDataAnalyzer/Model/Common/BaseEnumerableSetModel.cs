@@ -68,13 +68,6 @@ namespace TrafficLightDataAnalyzer.Model.Common
         /// <returns>True, if both operands are equal. Otherwise, return false</returns>
         public static bool operator ==(BaseEnumerableSetModel<TChildSet> first, BaseEnumerableSetModel<TChildSet> second)
         {
-            if (!(first is TChildSet) ||
-                !(second is TChildSet)
-            ) {
-                // Maybe, exception will be better solution
-                return false;
-            }
-
             if (object.ReferenceEquals(first, null))
             {
                 return object.ReferenceEquals(second, null);
@@ -82,6 +75,12 @@ namespace TrafficLightDataAnalyzer.Model.Common
 
             first = first as TChildSet;
             second = second as TChildSet;
+
+            if (first is null ||
+                second is null
+            ) {
+                return false;
+            }
 
             return first.Equals(second);
         }
@@ -94,20 +93,24 @@ namespace TrafficLightDataAnalyzer.Model.Common
         /// <returns>True, if both operands are inequal. Otherwise, return false</returns>
         public static bool operator !=(BaseEnumerableSetModel<TChildSet> first, BaseEnumerableSetModel<TChildSet> second)
         {
-            if (!(first is TChildSet) ||
-                !(second is TChildSet)
-            ) {
-                // Maybe, exception will be better solution
-                return true;
-            }
-
             if (object.ReferenceEquals(first, null))
             {
-                return !object.ReferenceEquals(second, null);
+                return !object.ReferenceEquals(second, null) && second is TChildSet;
+            }
+
+            if (object.ReferenceEquals(second, null))
+            {
+                return !object.ReferenceEquals(first, null) && first is TChildSet;
             }
 
             first = first as TChildSet;
             second = second as TChildSet;
+
+            if (first is null ||
+                second is null
+            ) {
+                return true;
+            }
 
             return !first.Equals(second);
         }

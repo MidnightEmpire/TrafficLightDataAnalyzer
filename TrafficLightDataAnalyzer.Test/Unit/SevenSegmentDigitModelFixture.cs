@@ -62,7 +62,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// 7-segment digit model amount checking method
         /// </summary>
         [Test]
-        public void SevenSegmentDigitModel_AllDigits_Containsly10Items()
+        public void SevenSegmentDigitModel_WhenCheckingAllDigitsSet_ItContainsly10Items()
         {
             var digitsAmout = SevenSegmentDigitModel.AllDigits.Count;
 

@@ -11,7 +11,7 @@ namespace TrafficLightDataAnalyzer
     {
         static void Main(string[] args)
         {
-            var rangeGenerator = new SequentialCountdownDigitRangeGenerator();
+            var rangeGenerator = new SequentialCountdownDigitRangeGeneratorModel();
 
             var range = rangeGenerator.MakeRange(
                 new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5),

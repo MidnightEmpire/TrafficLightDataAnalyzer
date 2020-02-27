@@ -8,9 +8,9 @@ using TrafficLightDataAnalyzer.Model.Navigator;
 namespace TrafficLightDataAnalyzer.Model.RangeGenerator
 {
     /// <summary>
-    /// Sequential countdown digit range generator
+    /// Sequential countdown digit range generator model class
     /// </summary>
-    internal class SequentialCountdownDigitRangeGenerator : IRangeGenerator<TwoDigitClockFaceValueModel>
+    internal class SequentialCountdownDigitRangeGeneratorModel : IRangeGenerator<TwoDigitClockFaceValueModel>
     {
         /// <summary>
         /// Items range making method

@@ -4,6 +4,7 @@ using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 using TrafficLightDataAnalyzer.Model.Observation;
 using TrafficLightDataAnalyzer.Model.RangeGenerator;
+using TrafficLightDataAnalyzer.Model.RangeTransformer;
 
 namespace TrafficLightDataAnalyzer
 {
@@ -13,9 +14,15 @@ namespace TrafficLightDataAnalyzer
         {
             var rangeGenerator = new SequentialCountdownDigitRangeGeneratorModel();
 
-            var range = rangeGenerator.MakeRange(
-                new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5),
-                new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5)
+            var rangeBroker = new TwoDigitClockFaceBrokeUpTransformationModel(
+                new TwoDigitClockFaceObservationBinaryCodeValueModel(0b0111_1111, 0b0111_1111)
+            );
+
+            var range = rangeBroker.Transform(
+                rangeGenerator.MakeRange(
+                    new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit9, SevenSegmentDigitModel.Digit5),
+                    new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5)
+                )
             );
 
             range.ForEach((rangeItem) =>

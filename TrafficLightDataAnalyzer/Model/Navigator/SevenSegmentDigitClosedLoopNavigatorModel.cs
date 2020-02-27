@@ -54,8 +54,9 @@ namespace TrafficLightDataAnalyzer.Model.Navigator
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            if (!SevenSegmentDigitClosedLoopNavigatorModel._digitPositions.ContainsKey(currentItem))
-            {
+            if (currentItem == null ||
+                !SevenSegmentDigitClosedLoopNavigatorModel._digitPositions.ContainsKey(currentItem)
+            ) {
                 throw new ArgumentOutOfRangeException(nameof(currentItem));
             }
 
@@ -86,8 +87,9 @@ namespace TrafficLightDataAnalyzer.Model.Navigator
                 throw new ArgumentOutOfRangeException(nameof(count));
             }
 
-            if (!SevenSegmentDigitClosedLoopNavigatorModel._digitPositions.ContainsKey(currentItem))
-            {
+            if (currentItem == null || 
+                !SevenSegmentDigitClosedLoopNavigatorModel._digitPositions.ContainsKey(currentItem)
+            ) {
                 throw new ArgumentOutOfRangeException(nameof(currentItem));
             }
 

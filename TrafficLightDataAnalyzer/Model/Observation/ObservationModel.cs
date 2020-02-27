@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 using TrafficLightDataAnalyzer.Model.Observation.Validator;
 using TrafficLightDataAnalyzer.Model.Validation;
@@ -25,7 +26,7 @@ namespace TrafficLightDataAnalyzer.Model.Observation
         /// <summary>
         /// Registered digits binary codes array property
         /// </summary>
-        public byte[] BinaryCodes { get; }
+        public TwoDigitClockFaceObservationBinaryCodeValueModel BinaryCodes { get; }
 
         /// <summary>
         /// Main constructor
@@ -41,9 +42,11 @@ namespace TrafficLightDataAnalyzer.Model.Observation
 
             this.Color = TrafficLightColorModel.FindByName(colorName, StringComparison.OrdinalIgnoreCase);
 
-            this.BinaryCodes = binaryCodesStrings
+            var binaryCodes = binaryCodesStrings
                 .Select((binaryCodeString) => Convert.ToByte(binaryCodeString, 2))
                 .ToArray();
+
+            this.BinaryCodes = new TwoDigitClockFaceObservationBinaryCodeValueModel(binaryCodes[0], binaryCodes[1]);
         }
 
         /// <summary>

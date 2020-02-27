@@ -70,7 +70,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         {
             var digitsAmout = SevenSegmentDigitModel.AllDigits.Count;
 
-            Assert.AreEqual(digitsAmout, 10);
+            Assert.AreEqual(10, digitsAmout);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
 {
@@ -70,18 +71,31 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
         private static List<SevenSegmentDigitModel> _allDigits;
 
         /// <summary>
+        /// All digit property collection lazy loader reference field
+        /// </summary>
+        private static Lazy<ReadOnlyCollection<SevenSegmentDigitModel>> _allDigitPropertyLazyLoader;
+
+        /// <summary>
         /// Register digit value 7-segment representation model in all digit value 7-segment representation models collection method
         /// </summary>
         /// <param name="sevenSegmentDigitModel">Digit value 7-segment representation model reference value to register</param>
         private static void registerSevenSegmentDigit(SevenSegmentDigitModel sevenSegmentDigitModel)
         {
+            var isNonUnique = SevenSegmentDigitModel._allDigits.Any(
+                (digit) => digit.BinaryCode == sevenSegmentDigitModel.BinaryCode || digit.Value == sevenSegmentDigitModel.Value
+            );
+
+            if (isNonUnique) {
+                throw new ArgumentException(nameof(sevenSegmentDigitModel));
+            }
+
             SevenSegmentDigitModel._allDigits.Add(sevenSegmentDigitModel);
         }
 
         /// <summary>
         /// All digit value 7-segment representation models collection computional property
         /// </summary>
-        public static ReadOnlyCollection<SevenSegmentDigitModel> AllDigits => SevenSegmentDigitModel._allDigits.AsReadOnly();
+        public static ReadOnlyCollection<SevenSegmentDigitModel> AllDigits => SevenSegmentDigitModel._allDigitPropertyLazyLoader.Value;
 
         /// <summary>
         /// Zero digit value 7-segment representation model instance static reference property
@@ -134,12 +148,12 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
         public static SevenSegmentDigitModel Digit9 { get; }
 
         /// <summary>
-        /// Enabled segments binary code representation value property
+        /// Enabled segments binary code representation value property. Value must be strictly unique one
         /// </summary>
         public byte BinaryCode { get; }
 
         /// <summary>
-        /// Usual digit value property
+        /// Usual digit value property. Value must be strictly unique one
         /// </summary>
         public byte Value { get; }
 
@@ -162,6 +176,10 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
         static SevenSegmentDigitModel()
         {
             SevenSegmentDigitModel._allDigits = new List<SevenSegmentDigitModel>();
+
+            SevenSegmentDigitModel._allDigitPropertyLazyLoader = new Lazy<ReadOnlyCollection<SevenSegmentDigitModel>>(
+                () => SevenSegmentDigitModel._allDigits.AsReadOnly()
+            );
 
             SevenSegmentDigitModel.Digit0 = new SevenSegmentDigitModel(SevenSegmentDigitModel.Digit0BinaryCode, 0);
             SevenSegmentDigitModel.Digit1 = new SevenSegmentDigitModel(SevenSegmentDigitModel.Digit1BinaryCode, 1);

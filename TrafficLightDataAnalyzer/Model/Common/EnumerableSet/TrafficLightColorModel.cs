@@ -67,7 +67,7 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
         /// Find traffic light color model by specified name method
         /// </summary>
         /// <param name="name">Traffic light color proper name value</param>
-        /// <returns>Traffic light color proper class reference value</returns>
+        /// <returns>Traffic light color proper class instance reference value</returns>
         public static TrafficLightColorModel FindByName(string name)
         {
             if (!string.IsNullOrEmpty(name))
@@ -88,7 +88,7 @@ namespace TrafficLightDataAnalyzer.Model.Common.EnumerableSet
         /// </summary>
         /// <param name="name">Traffic light color proper name value</param>
         /// <param name="comparisonType">String comparison type</param>
-        /// <returns>Traffic light color proper class reference value</returns>
+        /// <returns>Traffic light color proper class instance reference value</returns>
         public static TrafficLightColorModel FindByName(string name, StringComparison comparisonType)
         {
             if (!string.IsNullOrEmpty(name))

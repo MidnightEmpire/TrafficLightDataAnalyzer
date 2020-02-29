@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\GuessProposer\" />
+    <Folder Include="Model\Predictor\Complex\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.Navigator;
+using TrafficLightDataAnalyzer.Model.Navigation;
 
 namespace TrafficLightDataAnalyzer.Test.Unit
 {
@@ -76,9 +76,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             SevenSegmentDigitModel currentDigitModel,
             int shift
         ) {
-            var sevenSegmentDigitClosedLoopNavigatorModel = new SevenSegmentDigitClosedLoopNavigatorModel();
+            var navigationFactory = new NavigationFactoryModel();
 
-            Assert.Catch<ArgumentOutOfRangeException>(() => sevenSegmentDigitClosedLoopNavigatorModel.NextAfter(currentDigitModel, shift));
+            var navigator = navigationFactory.CreateSequentialCountdownDigitRangeGenerator();
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => navigator.NextAfter(currentDigitModel, shift));
         }
 
         /// <summary>
@@ -91,11 +93,12 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         public void SevenSegmentDigitClosedLoopNavigatorModel_WhenNavigatesToPreviousItemWithInvalidData_ThrowsArgumentOutOfRangeException(
             SevenSegmentDigitModel currentDigitModel,
             int shift
-        )
-        {
-            var sevenSegmentDigitClosedLoopNavigatorModel = new SevenSegmentDigitClosedLoopNavigatorModel();
+        ) {
+            var navigationFactory = new NavigationFactoryModel();
 
-            Assert.Catch<ArgumentOutOfRangeException>(() => sevenSegmentDigitClosedLoopNavigatorModel.PreviousBefore(currentDigitModel, shift));
+            var navigator = navigationFactory.CreateSequentialCountdownDigitRangeGenerator();
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => navigator.PreviousBefore(currentDigitModel, shift));
         }
 
         /// <summary>
@@ -112,11 +115,13 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             int shift,
             SevenSegmentDigitModel expectedDigitModel
         ) {
-            var sevenSegmentDigitClosedLoopNavigatorModel = new SevenSegmentDigitClosedLoopNavigatorModel();
+            var navigationFactory = new NavigationFactoryModel();
+
+            var navigator = navigationFactory.CreateSequentialCountdownDigitRangeGenerator();
 
             var navigatedDigitModel = shift > 0 ?
-                sevenSegmentDigitClosedLoopNavigatorModel.NextAfter(currentDigitModel, shift) :
-                sevenSegmentDigitClosedLoopNavigatorModel.PreviousBefore(currentDigitModel, -shift);
+                navigator.NextAfter(currentDigitModel, shift) :
+                navigator.PreviousBefore(currentDigitModel, -shift);
 
             Assert.AreEqual(expectedDigitModel, navigatedDigitModel);
         }

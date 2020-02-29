@@ -21,7 +21,7 @@ namespace TrafficLightDataAnalyzer.Model.Observation.Validator
         /// <param name="binaryCodesStrings">Registered traffic light color name reference value</param>
         public void ValidateTrafficLightColorName(string colorName)
         {
-            var trafficLightColorValidator = this._validationFactory.GetTrafficLightColorNameValidator();
+            var trafficLightColorValidator = this._validationFactory.CreateTrafficLightColorNameValidator();
 
             if (!trafficLightColorValidator.IsValid(colorName))
             {
@@ -35,14 +35,14 @@ namespace TrafficLightDataAnalyzer.Model.Observation.Validator
         /// <param name="binaryCodesStrings">Registered digits binary codes strings array reference value</param>
         public void ValidateBinaryCodesStrings(string[] binaryCodesStrings)
         {
-            var sevenSegmentsBinaryCodesStringsAmountValidator = this._validationFactory.GetSevenSegmentBinaryCodesStringsAmountValidator();
+            var sevenSegmentsBinaryCodesStringsAmountValidator = this._validationFactory.CreateSevenSegmentBinaryCodesStringsAmountValidator();
 
             if (!sevenSegmentsBinaryCodesStringsAmountValidator.IsValid(binaryCodesStrings))
             {
                 throw new WrongObservationDataException(StringsKeeper.ExceptionMessage.InvalidDigitCodesAmount);
             }
 
-            var sevenSegmentBinaryCodeStringValidator = this._validationFactory.GetSevenSegmentBinaryCodeStringValidator();
+            var sevenSegmentBinaryCodeStringValidator = this._validationFactory.CreateSevenSegmentBinaryCodeStringValidator();
 
             if (binaryCodesStrings.Any((binaryCodeString) => !sevenSegmentBinaryCodeStringValidator.IsValid(binaryCodeString)))
             {

@@ -4,7 +4,7 @@ using System.Linq;
 using TrafficLightDataAnalyzer.Interface;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 
-namespace TrafficLightDataAnalyzer.Model.Navigator
+namespace TrafficLightDataAnalyzer.Model.Navigation.AssociativeNavigator
 {
     /// <summary>
     /// Seven segment digit closed loop navigator model

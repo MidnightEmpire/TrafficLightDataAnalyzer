@@ -6,13 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\Predictor\Complex\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
     <_Parameter1>$(AssemblyName).Test</_Parameter1>
     </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\Prediction\Predictor\Complex\" />
   </ItemGroup>
 
 </Project>

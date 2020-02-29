@@ -3,7 +3,7 @@ using System.Linq;
 using TrafficLightDataAnalyzer.Interface;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 
-namespace TrafficLightDataAnalyzer.Model.Predictor.Simple
+namespace TrafficLightDataAnalyzer.Model.Prediction.Predictor.Simple
 {
     /// <summary>
     /// Possible seven segment digits by source broken code prediction model class

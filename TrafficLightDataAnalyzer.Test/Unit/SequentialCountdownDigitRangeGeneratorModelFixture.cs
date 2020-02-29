@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.RangeGenerator;
+using TrafficLightDataAnalyzer.Model.Generation;
 
 namespace TrafficLightDataAnalyzer.Test.Unit
 {
@@ -102,9 +102,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             TwoDigitClockFaceValueModel from,
             TwoDigitClockFaceValueModel to
         ) {
-            var sequentialCountdownDigitRangeGeneratorModel = new SequentialCountdownDigitRangeGeneratorModel();
+            var generationFactory = new GenerationFactoryModel();
 
-            Assert.Catch<ArgumentOutOfRangeException>(() => sequentialCountdownDigitRangeGeneratorModel.MakeRange(from, to).ToList());
+            var generator = generationFactory.CreateSequentialCountdownDigitRangeGenerator();
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => generator.MakeRange(from, to).ToList());
         }
 
         /// <summary>
@@ -120,9 +122,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             TwoDigitClockFaceValueModel to,
             IEnumerable<TwoDigitClockFaceValueModel> expectedRange
         ) {
-            var sequentialCountdownDigitRangeGeneratorModel = new SequentialCountdownDigitRangeGeneratorModel();
+            var generationFactory = new GenerationFactoryModel();
 
-            var result = sequentialCountdownDigitRangeGeneratorModel.MakeRange(from, to).ToList();
+            var generator = generationFactory.CreateSequentialCountdownDigitRangeGenerator();
+
+            var result = generator.MakeRange(from, to).ToList();
 
             Assert.AreEqual(expectedRange, result);
         }

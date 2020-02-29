@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.RangeTransformer;
+using TrafficLightDataAnalyzer.Model.Transformation;
 
 namespace TrafficLightDataAnalyzer.Test.Unit
 {
@@ -123,7 +123,9 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         public void TwoDigitClockFaceBrokeUpTransformationModel_WhenTryToConstructTransformerWithEmptyBinaryCodes_ThrowsArgumentOutOfRangeException(
             TwoDigitClockFaceObservationBinaryCodeValueModel binaryCodeMasks
         ) {
-            Assert.Catch<ArgumentOutOfRangeException>(() => new TwoDigitClockFaceBrokeUpTransformationModel(binaryCodeMasks));
+            var transformationFactory = new TransformationFactoryModel();
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => transformationFactory.CreateTwoDigitClockFaceBrokeUpTransformer(binaryCodeMasks));
         }
 
         /// <summary>
@@ -137,9 +139,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             IEnumerable<TwoDigitClockFaceValueModel> source,
             TwoDigitClockFaceObservationBinaryCodeValueModel binaryCodeMasks
         ) {
-            var twoDigitClockFaceBrokeUpTransformationModel = new TwoDigitClockFaceBrokeUpTransformationModel(binaryCodeMasks);
+            var transformationFactory = new TransformationFactoryModel();
 
-            Assert.Catch<ArgumentOutOfRangeException>(() => twoDigitClockFaceBrokeUpTransformationModel.Transform(source).ToList());
+            var transformer = transformationFactory.CreateTwoDigitClockFaceBrokeUpTransformer(binaryCodeMasks);
+
+            Assert.Catch<ArgumentOutOfRangeException>(() => transformer.Transform(source).ToList());
         }
 
         /// <summary>
@@ -155,9 +159,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             TwoDigitClockFaceObservationBinaryCodeValueModel binaryCodeMasks,
             IEnumerable<TwoDigitClockFaceObservationBinaryCodeValueModel> expectedRange
         ) {
-            var twoDigitClockFaceBrokeUpTransformationModel = new TwoDigitClockFaceBrokeUpTransformationModel(binaryCodeMasks);
+            var transformationFactory = new TransformationFactoryModel();
 
-            var result = twoDigitClockFaceBrokeUpTransformationModel.Transform(source).ToList();
+            var transformer = transformationFactory.CreateTwoDigitClockFaceBrokeUpTransformer(binaryCodeMasks);
+
+            var result = transformer.Transform(source).ToList();
 
             Assert.AreEqual(expectedRange, result);
         }

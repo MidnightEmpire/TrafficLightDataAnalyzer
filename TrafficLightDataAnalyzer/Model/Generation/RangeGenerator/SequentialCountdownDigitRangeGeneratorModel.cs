@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using TrafficLightDataAnalyzer.Interface;
 using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.Navigator;
+using TrafficLightDataAnalyzer.Model.Navigation;
 
-namespace TrafficLightDataAnalyzer.Model.RangeGenerator
+namespace TrafficLightDataAnalyzer.Model.Generation.RangeGenerator
 {
     /// <summary>
     /// Sequential countdown digit range generator model class
@@ -34,7 +34,9 @@ namespace TrafficLightDataAnalyzer.Model.RangeGenerator
             var currentValue = firstArgumentIsBigger ? from : to;
             var targetValue = firstArgumentIsBigger ? to : from;
 
-            var digitNavigator = new SevenSegmentDigitClosedLoopNavigatorModel();
+            var navigationFactory = new NavigationFactoryModel();
+
+            var digitNavigator = navigationFactory.CreateSequentialCountdownDigitRangeGenerator();
 
             yield return currentValue;
 

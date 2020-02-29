@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.Predictor.Simple;
+using TrafficLightDataAnalyzer.Model.Prediction;
 
 namespace TrafficLightDataAnalyzer.Test.Unit
 {
@@ -80,9 +80,11 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             byte binaryCode,
             IEnumerable<SevenSegmentDigitModel> expectedPrediction
         ) {
-            var possibleSevenSegmentDigitsByCodePredictorModel = new PossibleSevenSegmentDigitsByCodePredictorModel();
+            var predictionFactory = new PredictionFactoryModel();
 
-            var result = possibleSevenSegmentDigitsByCodePredictorModel.MakeGuess(binaryCode).ToList();
+            var predictor = predictionFactory.CreatePossibleSevenSegmentDigitsByCodePredictor();
+
+            var result = predictor.MakeGuess(binaryCode).ToList();
 
             Assert.AreEqual(expectedPrediction, result);
         }

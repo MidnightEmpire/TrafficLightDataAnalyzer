@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using TrafficLightDataAnalyzer.Interface;
+﻿using TrafficLightDataAnalyzer.Interface;
 
 namespace TrafficLightDataAnalyzer.Model.Validation.Validator
 {

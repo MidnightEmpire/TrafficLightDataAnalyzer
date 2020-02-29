@@ -2,9 +2,9 @@
 using TrafficLightDataAnalyzer.Extension;
 using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
+using TrafficLightDataAnalyzer.Model.Generation;
 using TrafficLightDataAnalyzer.Model.Observation;
-using TrafficLightDataAnalyzer.Model.RangeGenerator;
-using TrafficLightDataAnalyzer.Model.RangeTransformer;
+using TrafficLightDataAnalyzer.Model.Transformation;
 
 namespace TrafficLightDataAnalyzer
 {
@@ -12,14 +12,17 @@ namespace TrafficLightDataAnalyzer
     {
         static void Main(string[] args)
         {
-            var rangeGenerator = new SequentialCountdownDigitRangeGeneratorModel();
+            var generationFactory = new GenerationFactoryModel();
+            var transformationFactory = new TransformationFactoryModel();
 
-            var rangeBroker = new TwoDigitClockFaceBrokeUpTransformationModel(
+            var generator = generationFactory.CreateSequentialCountdownDigitRangeGenerator();
+
+            var rangeBroker = transformationFactory.CreateTwoDigitClockFaceBrokeUpTransformer(
                 new TwoDigitClockFaceObservationBinaryCodeValueModel(0b0111_1111, 0b0111_1111)
             );
 
             var range = rangeBroker.Transform(
-                rangeGenerator.MakeRange(
+                generator.MakeRange(
                     new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit9, SevenSegmentDigitModel.Digit5),
                     new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5)
                 )

@@ -12,7 +12,7 @@ namespace TrafficLightDataAnalyzer.Model.Validation
         /// Traffic light color name validation model instance obtaining method
         /// </summary>
         /// <returns>New instance of traffic light color name validation model</returns>
-        public IValidator<string> GetTrafficLightColorNameValidator()
+        public IValidator<string> CreateTrafficLightColorNameValidator()
         {
             return new TrafficLightColorNameValidationModel();
         }
@@ -21,7 +21,7 @@ namespace TrafficLightDataAnalyzer.Model.Validation
         /// Traffic light observation seven segment binary code string validation model instance obtaining method
         /// </summary>
         /// <returns>New instance of traffic light observation seven segment binary code string validation model</returns>
-        public IValidator<string> GetSevenSegmentBinaryCodeStringValidator()
+        public IValidator<string> CreateSevenSegmentBinaryCodeStringValidator()
         {
             return new SevenSegmentBinaryCodeStringValidationModel();
         }
@@ -30,7 +30,7 @@ namespace TrafficLightDataAnalyzer.Model.Validation
         /// Traffic light observation seven segment binary codes strings amount validation model instance obtaining method
         /// </summary>
         /// <returns>New instance of traffic light observation seven segment binary codes strings amount validation model</returns>
-        public IValidator<string[]> GetSevenSegmentBinaryCodesStringsAmountValidator()
+        public IValidator<string[]> CreateSevenSegmentBinaryCodesStringsAmountValidator()
         {
             return new SevenSegmentBinaryCodesStringsAmountValidationModel();
         }

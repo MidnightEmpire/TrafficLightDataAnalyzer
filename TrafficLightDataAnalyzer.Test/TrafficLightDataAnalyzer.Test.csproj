@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Integrational\" />
+    <ProjectReference Include="..\TrafficLightDataAnalyzer\TrafficLightDataAnalyzer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TrafficLightDataAnalyzer\TrafficLightDataAnalyzer.csproj" />
+    <Folder Include="Integrational\" />
   </ItemGroup>
 
 </Project>

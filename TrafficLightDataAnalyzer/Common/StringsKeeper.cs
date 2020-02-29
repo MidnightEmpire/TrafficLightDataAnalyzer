@@ -26,9 +26,9 @@
             public static string EmptyObservationsSequence => "There isn't enough data";
 
             /// <summary>
-            /// Observation sequence is already finished one exception message compution property
+            /// Observation sequence is already sealed one exception message compution property
             /// </summary>
-            public static string ObservationIsAlreadyFinished => "The red observation should be the last";
+            public static string ObservationIsAlreadySealed => "The red observation should be the last";
 
             /// <summary>
             /// Observation has invalid traffic light color format exception message compution property

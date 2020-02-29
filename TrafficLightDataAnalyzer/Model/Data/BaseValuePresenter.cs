@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TrafficLightDataAnalyzer.Model.Data;
 
 namespace TrafficLightDataAnalyzer.Model.Data
 {

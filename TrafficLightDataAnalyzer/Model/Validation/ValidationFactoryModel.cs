@@ -1,4 +1,6 @@
-﻿using TrafficLightDataAnalyzer.Interface;
+﻿using System.Collections.Generic;
+using TrafficLightDataAnalyzer.Interface;
+using TrafficLightDataAnalyzer.Model.Observation;
 using TrafficLightDataAnalyzer.Model.Validation.Validator;
 
 namespace TrafficLightDataAnalyzer.Model.Validation
@@ -33,6 +35,24 @@ namespace TrafficLightDataAnalyzer.Model.Validation
         public IValidator<string[]> CreateSevenSegmentBinaryCodesStringsAmountValidator()
         {
             return new SevenSegmentBinaryCodesStringsAmountValidationModel();
+        }
+
+        /// <summary>
+        /// Traffic light sealed observation sequence has red color at the end validation model instance obtaining method
+        /// </summary>
+        /// <returns>New instance of traffic light sealed observation sequence has red color at the end validation model</returns>
+        public IValidator<List<ObservationModel>> CreateSealedObservationSequenceEndsByRedColorValidator()
+        {
+            return new SealedObservationSequenceEndsByRedColorValidationModel();
+        }
+
+        /// <summary>
+        /// Traffic light sealed observation sequence has enough data validation model  instance obtaining method
+        /// </summary>
+        /// <returns>New instance of traffic light sealed observation sequence has enough data validation model </returns>
+        public IValidator<List<ObservationModel>> CreateSealedObservationSequenceHasEnoughDataValidator()
+        {
+            return new SealedObservationSequenceHasEnoughDataValidationModel();
         }
     }
 }

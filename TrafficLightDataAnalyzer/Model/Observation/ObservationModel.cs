@@ -32,7 +32,7 @@ namespace TrafficLightDataAnalyzer.Model.Observation
         /// Main constructor
         /// </summary>
         /// <param name="colorName">Registered traffic light color name</param>
-        /// <param name="binaryCodesStrings">Binary codes strings array. Despite the fact of any string array size, require strict DigitAmout items amount</param>
+        /// <param name="binaryCodesStrings">Binary codes strings array. Despite the fact of any string array size, require strict SevenSegmentBinaryCodesStringsAmountValidationModel.DigitAmout items amount</param>
         public ObservationModel(string colorName, params string[] binaryCodesStrings)
         {
             var validationFactory = new ValidationFactoryModel();
@@ -47,6 +47,14 @@ namespace TrafficLightDataAnalyzer.Model.Observation
                 .ToArray();
 
             this.BinaryCodes = new TwoDigitClockFaceObservationBinaryCodeValueModel(binaryCodes[0], binaryCodes[1]);
+        }
+
+        /// <summary>
+        /// Additional constructor: only color name required, all binary codes will be strings of 0b0000_0000 values
+        /// </summary>
+        /// <param name="colorName">Registered traffic light color name</param>
+        public ObservationModel(string colorName) : this(colorName, "0000000", "0000000")
+        {
         }
 
         /// <summary>

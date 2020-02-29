@@ -4,6 +4,7 @@ using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
 using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
 using TrafficLightDataAnalyzer.Model.Generation;
 using TrafficLightDataAnalyzer.Model.Observation;
+using TrafficLightDataAnalyzer.Model.Prediction;
 using TrafficLightDataAnalyzer.Model.Transformation;
 
 namespace TrafficLightDataAnalyzer
@@ -46,6 +47,14 @@ namespace TrafficLightDataAnalyzer
             var observation = new ObservationModel("green", "0000000", "0001111");
 
             Console.WriteLine(observation);
+
+            var predictionFactory = new PredictionFactoryModel();
+
+            var predictor = predictionFactory.CreatePossibleSevenSegmentDigitsByCodePredictor();
+
+            var predictedDigits = predictor.MakeGuess(0b0000_1111);
+
+            Console.WriteLine($"[{string.Join(", ", predictedDigits)}]");
         }
     }
 }

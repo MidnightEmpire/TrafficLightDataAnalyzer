@@ -6,7 +6,7 @@ using TrafficLightDataAnalyzer.Model.Validation;
 namespace TrafficLightDataAnalyzer.Model.Observation.Validator
 {
     /// <summary>
-    /// Observation constructor arguments validator model class
+    /// Traffic light observation constructor arguments validator model class
     /// </summary>
     internal class ObservationValidatorModel
     {

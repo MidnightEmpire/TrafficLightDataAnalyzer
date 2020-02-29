@@ -10,6 +10,15 @@ namespace TrafficLightDataAnalyzer.Model.Transformation
     internal class TransformationFactoryModel
     {
         /// <summary>
+        /// Two digit clock face identity convertor transformation model instance obtaining method
+        /// </summary>
+        /// <returns>New instance of two digit clock face identity convertor transformation model</returns>
+        public IRangeTransformer<TwoDigitClockFaceValueModel, TwoDigitClockFaceObservationBinaryCodeValueModel> CreateTwoDigitClockFaceIdentityConvertorTransformer()
+        {
+            return new TwoDigitClockFaceIdentityConvertorTransformationModel();
+        }
+
+        /// <summary>
         /// Two digit clock face broke up transformation model instance obtaining method
         /// </summary>
         /// <param name="brokeUpBinaryCodesMasks">Broke-up binary codes masks reference value. Each digit specify broken segments by "1" bit, working one by "0" bit</param>

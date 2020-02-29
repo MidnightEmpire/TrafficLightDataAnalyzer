@@ -17,6 +17,20 @@ namespace TrafficLightDataAnalyzer.Model.ObservationSequence.Validator
         private readonly ValidationFactoryModel _validationFactory;
 
         /// <summary>
+        /// Traffic light sealed observation sequence GUID validation method
+        /// </summary>
+        /// <param name="sequenceGuid">Sequence GUID string reference value</param>
+        public void ValidateObservationSequenceGuid(string sequenceGuid)
+        {
+            var guidFormatValidator = this._validationFactory.CreateGuidFormatValidator();
+
+            if (!guidFormatValidator.IsValid(sequenceGuid))
+            {
+                throw new WrongObservationDataException(StringsKeeper.ExceptionMessage.InvalidGuidFormat);
+            }
+        }
+
+        /// <summary>
         /// Traffic light sealed observation sequence adding new observation ability validation method
         /// </summary>
         /// <param name="isSealed">Observation sequence is sealed by traffic light red color observation flag value</param>

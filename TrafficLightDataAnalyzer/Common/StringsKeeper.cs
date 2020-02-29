@@ -44,6 +44,11 @@
             /// Observation has invalid seven segment binary codes strings amount exception message compution property
             /// </summary>
             public static string InvalidDigitCodesAmount => "Observation has invalid digit codes amount";
+
+            /// <summary>
+            /// Observation sequence has invalid GUID string format exception message compution property
+            /// </summary>
+            public static string InvalidGuidFormat => "Observation sequence has invalid GUID string format";
         }
     }
 }

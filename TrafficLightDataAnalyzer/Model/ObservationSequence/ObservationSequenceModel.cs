@@ -66,6 +66,7 @@ namespace TrafficLightDataAnalyzer.Model.ObservationSequence
 
             this._observations = observations ?? new List<ObservationModel>();
 
+            ObservationSequenceModel._observationSequenceValidator.ValidateObservationSequenceGuid(this.Guid);
             ObservationSequenceModel._observationSequenceValidator.ValidateObservationSequence(this.IsSealed, this._observations);
         }
 

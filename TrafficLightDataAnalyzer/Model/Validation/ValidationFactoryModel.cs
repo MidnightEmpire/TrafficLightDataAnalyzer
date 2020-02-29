@@ -38,6 +38,15 @@ namespace TrafficLightDataAnalyzer.Model.Validation
         }
 
         /// <summary>
+        /// GUID format validation model instance obtaining method
+        /// </summary>
+        /// <returns>New instance of GUID format validation model</returns>
+        public IValidator<string> CreateGuidFormatValidator()
+        {
+            return new GuidFormatValidationModel();
+        }
+
+        /// <summary>
         /// Traffic light sealed observation sequence has red color at the end validation model instance obtaining method
         /// </summary>
         /// <returns>New instance of traffic light sealed observation sequence has red color at the end validation model</returns>

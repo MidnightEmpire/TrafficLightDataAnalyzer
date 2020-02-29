@@ -109,6 +109,38 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         #endregion
 
         /// <summary>
+        /// Observation sequence validator doesn't throw any exception if valid observation sequence GUID passed in validation method
+        /// </summary>
+        /// <param name="sequenceGuid">Observation sequence GUID string reference value</param>
+        [Test]
+        [TestCase("00000000000000000000000000000000")]
+        [TestCase("000000000afa00000000000000000000")]
+        [TestCase("00000000-0000-0000-0000-000000000000")]
+        [TestCase("00000000-0000-0000-0000-0ff00a000000")]
+        public void ObservationSequenceValidatorModel_WhenCheckingValidGuidFormat_MethodPassedWithNoException(string sequenceGuid)
+        {
+            var observationSequenceValidatorModel = new ObservationSequenceValidatorModel();
+
+            Assert.DoesNotThrow(() => observationSequenceValidatorModel.ValidateObservationSequenceGuid(sequenceGuid));
+        }
+
+        /// <summary>
+        /// Observation sequence validator throws exception if invalid observation sequence GUID passed in validation method
+        /// </summary>
+        /// <param name="sequenceGuid">Observation sequence GUID string reference value</param>
+        [Test]
+        [TestCase("000000000000x0000000000000000000")]
+        [TestCase("000000000afaq0000000000000000000")]
+        [TestCase("00000000/0000-0000-0000-0000000000001")]
+        [TestCase("00000000-0000-0000-0000-0ff00a000")]
+        public void ObservationSequenceValidatorModel_WhenCheckingInvalidGuidFormat_MethodThrowsWrongObservationDataException(string sequenceGuid)
+        {
+            var observationSequenceValidatorModel = new ObservationSequenceValidatorModel();
+
+            Assert.Catch<WrongObservationDataException>(() => observationSequenceValidatorModel.ValidateObservationSequenceGuid(sequenceGuid));
+        }
+
+        /// <summary>
         /// Observation sequence validator doesn't throw any exception if valid observation sequence passed in validation method
         /// </summary>
         /// <param name="isSealed">Observation sequence is sealed by traffic light red color observation flag value</param>

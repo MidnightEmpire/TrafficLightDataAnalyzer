@@ -78,7 +78,7 @@ namespace TrafficLightDataAnalyzer.Model.ObservationSequence
         public ObservationSequenceModel(string guid, params ObservationModel[] observations)
             : this(
                   guid,
-                  observations.Any((observation) => observation.Color == TrafficLightColorModel.Red),
+                  observations?.Any((observation) => observation.Color == TrafficLightColorModel.Red) ?? false,
                   observations?.ToList()
               )
         {

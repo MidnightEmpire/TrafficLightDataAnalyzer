@@ -21,7 +21,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// <summary>
         /// Valid observation data test case collection provider
         /// </summary>
-        private static IEnumerable<TestCaseData> GenerateValidObservationDataTestCaseCollection
+        private static IEnumerable<TestCaseData> ValidObservationDataTestCaseCollection
         {
             get
             {
@@ -66,11 +66,10 @@ namespace TrafficLightDataAnalyzer.Test.Unit
             }
         }
 
-
         /// <summary>
         /// Invalid observation data test case collection provider
         /// </summary>
-        private static IEnumerable<TestCaseData> GenerateInvalidObservationDataTestCaseCollection
+        private static IEnumerable<TestCaseData> InvalidObservationDataTestCaseCollection
         {
             get
             {
@@ -129,6 +128,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// </summary>
         /// <param name="sequenceGuid">Observation sequence GUID string reference value</param>
         [Test]
+        [TestCase(null)]
         [TestCase("000000000000x0000000000000000000")]
         [TestCase("000000000afaq0000000000000000000")]
         [TestCase("00000000/0000-0000-0000-0000000000001")]
@@ -146,7 +146,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// <param name="isSealed">Observation sequence is sealed by traffic light red color observation flag value</param>
         /// <param name="observations">Sequence of observations collection reference value</param>
         [Test]
-        [TestCaseSource("GenerateValidObservationDataTestCaseCollection")]
+        [TestCaseSource("ValidObservationDataTestCaseCollection")]
         public void ObservationSequenceValidatorModel_WhenCheckingValidObservationSequence_MethodPassedWithNoException(
             bool isSealed,
             List<ObservationModel> observations
@@ -162,7 +162,7 @@ namespace TrafficLightDataAnalyzer.Test.Unit
         /// <param name="isSealed">Observation sequence is sealed by traffic light red color observation flag value</param>
         /// <param name="observations">Sequence of observations collection reference value</param>
         [Test]
-        [TestCaseSource("GenerateInvalidObservationDataTestCaseCollection")]
+        [TestCaseSource("InvalidObservationDataTestCaseCollection")]
         public void ObservationSequenceValidatorModel_WhenCheckingInvalidObservationSequence_MethodThrowsWrongObservationDataException(
             bool isSealed,
             List<ObservationModel> observations

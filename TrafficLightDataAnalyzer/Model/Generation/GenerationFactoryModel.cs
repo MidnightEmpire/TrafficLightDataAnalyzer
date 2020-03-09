@@ -1,21 +1,21 @@
 ﻿using TrafficLightDataAnalyzer.Interface;
-using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
-using TrafficLightDataAnalyzer.Model.Generation.RangeGenerator;
+using TrafficLightDataAnalyzer.Model.Data.ValuePresenter.TrafficLight.ClockFace.Value;
+using TrafficLightDataAnalyzer.Model.Generation.Generator.Range.TrafficLight.ClockFace;
 
 namespace TrafficLightDataAnalyzer.Model.Generation
 {
     /// <summary>
-    /// Generation factory model class
+    /// Generation factory model class.
     /// </summary>
     internal class GenerationFactoryModel
     {
         /// <summary>
-        /// Sequential countdown digit range generator model instance obtaining method
+        /// <see cref="SequentialDigitsValueModelGeneratorModel">SequentialDigitsValueModelGeneratorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of sequential countdown digit range generator model</returns>
-        public IRangeGenerator<TwoDigitClockFaceValueModel> CreateSequentialCountdownDigitRangeGenerator()
+        /// <returns>New instance of <see cref="SequentialDigitsValueModelGeneratorModel">SequentialDigitsValueModelGeneratorModel</see>.</returns>
+        public IRangeGenerator<DigitsValueModel> CreateSequentialDigitsValueModelGenerator()
         {
-            return new SequentialCountdownDigitRangeGeneratorModel();
+            return new SequentialDigitsValueModelGeneratorModel();
         }
     }
 }

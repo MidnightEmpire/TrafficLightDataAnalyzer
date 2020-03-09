@@ -1,15 +1,15 @@
 ﻿namespace TrafficLightDataAnalyzer.Common
 {
     /// <summary>
-    /// Null instance of any type creation factory class
+    /// Null instances of any null-allowed type creation factory class.
     /// </summary>
     internal static class NullInstance
     {
         /// <summary>
-        /// Null instance of specified reference-based type obtaining method
+        /// Null instance of specified null-allowed <typeparamref name="TType" /> obtaining method.
         /// </summary>
-        /// <typeparam name="TType">Reference-based type of instance which one must be null</typeparam>
-        /// <returns>Null instance of specified reference-based type</returns>
+        /// <typeparam name="TType">Null-allowed type of instance which null instance is required.</typeparam>
+        /// <returns>Null instance of specified null-allowed <typeparamref name="TType" />.</returns>
         public static TType Of<TType>() where TType : class
         {
             return null;

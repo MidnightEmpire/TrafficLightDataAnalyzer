@@ -3,17 +3,17 @@
 namespace TrafficLightDataAnalyzer.Interface
 {
     /// <summary>
-    /// Some type values range generator interface
+    /// <typeparamref name="TRangeItem" /> values  range generator interface.
     /// </summary>
-    /// <typeparam name="TRangeItem">Type of range items</typeparam>
+    /// <typeparam name="TRangeItem">Type of result range items.</typeparam>
     internal interface IRangeGenerator<TRangeItem>
     {
         /// <summary>
-        /// Items range making method
+        /// Items range making method.
         /// </summary>
-        /// <param name="from">Start range value. Will be included into result range</param>
-        /// <param name="to">End range value. Will be included into result range</param>
-        /// <returns>Required range collection reference value</returns>
+        /// <param name="from">Start range item value. Will be included into result range.</param>
+        /// <param name="to">End range item value. Will be included into result range.</param>
+        /// <returns>Result <see cref="IEnumerable{T}">enumerable</see> range reference value.</returns>
         IEnumerable<TRangeItem> MakeRange(TRangeItem from, TRangeItem to);
     }
 }

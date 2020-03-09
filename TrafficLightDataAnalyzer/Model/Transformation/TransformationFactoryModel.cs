@@ -1,32 +1,22 @@
 ﻿using TrafficLightDataAnalyzer.Interface;
-using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
-using TrafficLightDataAnalyzer.Model.Transformation.RangeTransformer;
+using TrafficLightDataAnalyzer.Model.Data.ValuePresenter.TrafficLight.ClockFace.Value;
+using TrafficLightDataAnalyzer.Model.Transformation.Transformer.TrafficLight.ClockFace;
 
 namespace TrafficLightDataAnalyzer.Model.Transformation
 {
     /// <summary>
-    /// Transformation factory model class
+    /// Transformation factory model class.
     /// </summary>
     internal class TransformationFactoryModel
     {
         /// <summary>
-        /// Two digit clock face identity convertor transformation model instance obtaining method
+        /// <see cref="DigitsValueModelBrokeUpTransformerModel">DigitsValueModelBrokeUpTransformerModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of two digit clock face identity convertor transformation model</returns>
-        public IRangeTransformer<TwoDigitClockFaceValueModel, TwoDigitClockFaceObservationBinaryCodeValueModel> CreateTwoDigitClockFaceIdentityConvertorTransformer()
+        /// <param name="brokeUpBinaryCodesMasks">Broke-up <see cref="BinaryCodesValueModel">binary codes</see> masks reference value. Each digit specify broken segments by "1" bit, working one by "0" bit.</param>
+        /// <returns>New instance of <see cref="DigitsValueModelBrokeUpTransformerModel">ColorNameValidatorModel</see>.</returns>
+        public ITransformer<DigitsValueModel, BinaryCodesValueModel> CreateDigitsValueModelBrokeUpTransformer(BinaryCodesValueModel brokeUpBinaryCodesMasks)
         {
-            return new TwoDigitClockFaceIdentityConvertorTransformationModel();
-        }
-
-        /// <summary>
-        /// Two digit clock face broke up transformation model instance obtaining method
-        /// </summary>
-        /// <param name="brokeUpBinaryCodesMasks">Broke-up binary codes masks reference value. Each digit specify broken segments by "1" bit, working one by "0" bit</param>
-        /// <returns>New instance of two digit clock face broke up transformation model</returns>
-        public IRangeTransformer<TwoDigitClockFaceValueModel, TwoDigitClockFaceObservationBinaryCodeValueModel> CreateTwoDigitClockFaceBrokeUpTransformer(
-            TwoDigitClockFaceObservationBinaryCodeValueModel brokeUpBinaryCodesMasks
-        ) {
-            return new TwoDigitClockFaceBrokeUpTransformationModel(brokeUpBinaryCodesMasks);
+            return new DigitsValueModelBrokeUpTransformerModel(brokeUpBinaryCodesMasks);
         }
     }
 }

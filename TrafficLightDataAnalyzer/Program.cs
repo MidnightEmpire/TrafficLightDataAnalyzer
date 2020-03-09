@@ -1,11 +1,10 @@
 ﻿using System;
 using TrafficLightDataAnalyzer.Extension;
-using TrafficLightDataAnalyzer.Model.ClockFace.ValuePresenter;
-using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
+using TrafficLightDataAnalyzer.Model.Data.EnumerableSet.TrafficLight;
+using TrafficLightDataAnalyzer.Model.Data.ValuePresenter.TrafficLight.ClockFace.Value;
 using TrafficLightDataAnalyzer.Model.Generation;
-using TrafficLightDataAnalyzer.Model.Observation;
-using TrafficLightDataAnalyzer.Model.Prediction;
-using TrafficLightDataAnalyzer.Model.Transformation;
+using TrafficLightDataAnalyzer.Model.Navigation;
+using TrafficLightDataAnalyzer.Model.Observation.State.TrafficLight;
 
 namespace TrafficLightDataAnalyzer
 {
@@ -13,48 +12,67 @@ namespace TrafficLightDataAnalyzer
     {
         static void Main(string[] args)
         {
-            var generationFactory = new GenerationFactoryModel();
-            var transformationFactory = new TransformationFactoryModel();
+            Console.WriteLine(DigitModel.Undefined);
 
-            var generator = generationFactory.CreateSequentialCountdownDigitRangeGenerator();
-
-            var rangeBroker = transformationFactory.CreateTwoDigitClockFaceBrokeUpTransformer(
-                new TwoDigitClockFaceObservationBinaryCodeValueModel(0b0111_1111, 0b0111_1111)
-            );
-
-            var range = rangeBroker.Transform(
-                generator.MakeRange(
-                    new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit9, SevenSegmentDigitModel.Digit5),
-                    new TwoDigitClockFaceValueModel(SevenSegmentDigitModel.Digit0, SevenSegmentDigitModel.Digit5)
-                )
-            );
-
-            range.ForEach((rangeItem) =>
-            {
-                Console.WriteLine("=>" + rangeItem);
-            });
-
-            SevenSegmentDigitModel.AllDigits.ForEach((digit) =>
+            DigitModel.AllDigits.ForEach((digit) =>
             {
                 Console.WriteLine(digit);
             });
 
-            TrafficLightColorModel.AllColors.ForEach((color) =>
+            Console.WriteLine(ColorModel.Undefined);
+
+            ColorModel.AllColors.ForEach((color) =>
             {
                 Console.WriteLine(color);
             });
 
-            var observation = new ObservationModel("green", "0000000", "0001111");
+            var navigationFactory = new NavigationFactoryModel();
 
-            Console.WriteLine(observation);
+            var navigator = navigationFactory.CreateDigitNavigator();
 
-            var predictionFactory = new PredictionFactoryModel();
+            var nextDigit = DigitModel.Digit1;
 
-            var predictor = predictionFactory.CreatePossibleSevenSegmentDigitsByCodePredictor();
+            for (int i = 15; --i > 0; )
+            {
+                Console.WriteLine(nextDigit);
 
-            var predictedDigits = predictor.MakeGuess(0b0000_1111);
+                nextDigit = navigator.PreviousBefore(nextDigit, 1);
+            }
 
-            Console.WriteLine($"[{string.Join(", ", predictedDigits)}]");
+            BinaryCodesValueModel binaryCodes = (0b0001_0010, 0b0001_0011);
+
+            DigitsValueModel clockValues1 = (DigitModel.Digit1, DigitModel.Digit3);
+            DigitsValueModel clockValues2 = 99;
+
+            Console.WriteLine(clockValues1);
+            Console.WriteLine(clockValues2);
+            Console.WriteLine(binaryCodes);
+
+            var generationFactory = new GenerationFactoryModel();
+            var generator = generationFactory.CreateSequentialDigitsValueModelGenerator();
+
+            var range1 = generator.MakeRange(33, 11);
+            var range2 = generator.MakeRange(33, 99);
+            var range3 = generator.MakeRange(0, 0);
+
+            range1.ForEach((item) =>
+            {
+                Console.WriteLine(item);
+            });
+
+            range2.ForEach((item) =>
+            {
+                Console.WriteLine(item);
+            });
+
+            range3.ForEach((item) =>
+            {
+                Console.WriteLine(item);
+            });
+
+            var observationModel = new ObservedObjectStateModel(ColorModel.Red.Name, ("0001111", "1111010"));
+
+            Console.WriteLine(observationModel);
         }
     }
 }

@@ -4,19 +4,20 @@ using System.Collections.Generic;
 namespace TrafficLightDataAnalyzer.Extension
 {
     /// <summary>
-    /// IEnumerable extensions class
+    /// <see cref="IEnumerable{T}">IEnumerable</see> extensions class.
     /// </summary>
     internal static class IEnumerableExtensions
     {
         /// <summary>
-        /// ForEach extension for IEnumerable collection method
+        /// ForEach extension for <see cref="IEnumerable{T}">IEnumerable</see> method.
         /// </summary>
-        /// <typeparam name="TItemType">IEnumerable collection item type</typeparam>
-        /// <param name="sourceCollection">Source IEnumerable collection reference value</param>
-        /// <param name="action">Action, which one must be applied to each IEnumerable collection item value </param>
+        /// <typeparam name="TItemType"><paramref name="sourceCollection" /> item type.</typeparam>
+        /// <param name="sourceCollection">Source <see cref="IEnumerable{T}">IEnumerable</see> collection reference value.</param>
+        /// <param name="action">Action, which one will be applied to each <paramref name="sourceCollection" /> item value.</param>
+        /// <exception cref="ArgumentNullException">Throws if <paramref name="action" /> is null.</exception>
         public static void ForEach<TItemType>(this IEnumerable<TItemType> sourceCollection, Action<TItemType> action)
         {
-            if (action == null)
+            if (action is null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
@@ -28,14 +29,15 @@ namespace TrafficLightDataAnalyzer.Extension
         }
 
         /// <summary>
-        /// ForEach extension for IEnumerable collection method
+        /// ForEach extension for <see cref="IEnumerable{T}">IEnumerable</see> with items index available method.
         /// </summary>
-        /// <typeparam name="TItemType">IEnumerable collection item type</typeparam>
-        /// <param name="sourceCollection">Source IEnumerable collection reference value</param>
-        /// <param name="action">Action, which one must be applied to each IEnumerable collection item value </param>
+        /// <typeparam name="TItemType"><paramref name="sourceCollection" /> item type.</typeparam>
+        /// <param name="sourceCollection">Source <see cref="IEnumerable{T}">IEnumerable</see> collection reference value.</param>
+        /// <param name="action">Action, which one will be applied to each <paramref name="sourceCollection" /> item value.</param>
+        /// <exception cref="ArgumentNullException">Throws if <paramref name="action" /> is null.</exception>
         public static void ForEach<TItemType>(this IEnumerable<TItemType> sourceCollection, Action<int, TItemType> action)
         {
-            if (action == null)
+            if (action is null)
             {
                 throw new ArgumentNullException(nameof(action));
             }

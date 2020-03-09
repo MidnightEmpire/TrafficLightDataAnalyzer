@@ -1,22 +1,22 @@
 ﻿using System.Collections.Generic;
 using TrafficLightDataAnalyzer.Interface;
-using TrafficLightDataAnalyzer.Model.Common.EnumerableSet;
-using TrafficLightDataAnalyzer.Model.Prediction.Predictor.Simple;
+using TrafficLightDataAnalyzer.Model.Data.EnumerableSet.TrafficLight;
+using TrafficLightDataAnalyzer.Model.Prediction.Predictor.Simple.TrafficLight;
 
 namespace TrafficLightDataAnalyzer.Model.Prediction
 {
     /// <summary>
-    /// Prediction factory model class
+    /// Prediction factory model class.
     /// </summary>
     internal class PredictionFactoryModel
     {
         /// <summary>
-        /// Possible seven segment digits by code predictor model instance obtaining method
+        /// <see cref="PossibleDigitsByBinaryCodePredictorModel">PossibleDigitsByBinaryCodePredictorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of possible seven segment digits by code predictor model</returns>
-        public IPredictor<byte, IEnumerable<SevenSegmentDigitModel>> CreatePossibleSevenSegmentDigitsByCodePredictor()
+        /// <returns>New instance of <see cref="PossibleDigitsByBinaryCodePredictorModel">PossibleDigitsByBinaryCodePredictorModel</see>.</returns>
+        public IPredictor<byte, IEnumerable<DigitModel>> CreatePossibleDigitsByBinaryCodePredictor()
         {
-            return new PossibleSevenSegmentDigitsByCodePredictorModel();
+            return new PossibleDigitsByBinaryCodePredictorModel();
         }
     }
 }

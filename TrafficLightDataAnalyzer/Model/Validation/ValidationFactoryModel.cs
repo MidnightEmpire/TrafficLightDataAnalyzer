@@ -1,67 +1,78 @@
 ﻿using System.Collections.Generic;
 using TrafficLightDataAnalyzer.Interface;
-using TrafficLightDataAnalyzer.Model.Observation;
-using TrafficLightDataAnalyzer.Model.Validation.Validator;
+using TrafficLightDataAnalyzer.Model.Data.ValuePresenter.TrafficLight.ClockFace.Value;
+using TrafficLightDataAnalyzer.Model.Observation.State.TrafficLight;
+using TrafficLightDataAnalyzer.Model.Validation.Validator.Common;
+using TrafficLightDataAnalyzer.Model.Validation.Validator.TrafficLight;
 
 namespace TrafficLightDataAnalyzer.Model.Validation
 {
     /// <summary>
-    /// Validation factory model class
+    /// Validation factory model class.
     /// </summary>
     internal class ValidationFactoryModel
     {
         /// <summary>
-        /// Traffic light color name validation model instance obtaining method
+        /// <see cref="GuidStringFormatValidatorModel">GuidStringFormatValidatorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of traffic light color name validation model</returns>
-        public IValidator<string> CreateTrafficLightColorNameValidator()
+        /// <returns>New instance of <see cref="GuidStringFormatValidatorModel">GuidStringFormatValidatorModel</see>.</returns>
+        public IValidator<string> CreateGuidStringFormatValidator()
         {
-            return new TrafficLightColorNameValidationModel();
+            return new GuidStringFormatValidatorModel();
         }
 
         /// <summary>
-        /// Traffic light observation seven segment binary code string validation model instance obtaining method
+        /// <see cref="ColorNameValidatorModel">ColorNameValidatorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of traffic light observation seven segment binary code string validation model</returns>
+        /// <returns>New instance of <see cref="ColorNameValidatorModel">ColorNameValidatorModel</see>.</returns>
+        public IValidator<string> CreateColorNameValidator()
+        {
+            return new ColorNameValidatorModel();
+        }
+
+        /// <summary>
+        /// <see cref="DigitValueValidatorModel">DigitValueValidatorModel</see> instance obtaining method.
+        /// </summary>
+        /// <returns>New instance of <see cref="DigitValueValidatorModel">DigitValueValidatorModel</see>.</returns>
+        public IValidator<sbyte> CreateDigitValueValidator()
+        {
+            return new DigitValueValidatorModel();
+        }
+
+        /// <summary>
+        /// <see cref="SevenSegmentBinaryCodeStringValidatorModel">SevenSegmentBinaryCodeStringValidatiorModel</see> instance obtaining method.
+        /// </summary>
+        /// <returns>New instance of <see cref="SevenSegmentBinaryCodeStringValidatorModel">SevenSegmentBinaryCodeStringValidatiorModel</see>.</returns>
         public IValidator<string> CreateSevenSegmentBinaryCodeStringValidator()
         {
-            return new SevenSegmentBinaryCodeStringValidationModel();
+            return new SevenSegmentBinaryCodeStringValidatorModel();
         }
 
         /// <summary>
-        /// Traffic light observation seven segment binary codes strings amount validation model instance obtaining method
+        /// <see cref="DigitsValueValidatorModel">DigitsValueValidatorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of traffic light observation seven segment binary codes strings amount validation model</returns>
-        public IValidator<string[]> CreateSevenSegmentBinaryCodesStringsAmountValidator()
+        /// <returns>New instance of <see cref="DigitsValueValidatorModel">DigitValueValidatorModel</see>.</returns>
+        public IValidator<DigitsValueModel> CreateDigitsValueValidator()
         {
-            return new SevenSegmentBinaryCodesStringsAmountValidationModel();
+            return new DigitsValueValidatorModel();
         }
 
         /// <summary>
-        /// GUID format validation model instance obtaining method
+        /// <see cref="SealedObservationStatesFirstStateValidatorModel">SealedObservationStatesFirstStateValidatorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of GUID format validation model</returns>
-        public IValidator<string> CreateGuidFormatValidator()
+        /// <returns>New instance of <see cref="SealedObservationStatesFirstStateValidatorModel">SealedObservationStatesFirstStateValidatorModel</see>.</returns>
+        public IValidator<IList<ObservedObjectStateModel>> CreateSealedObservationStatesFirstStateValidator()
         {
-            return new GuidFormatValidationModel();
+            return new SealedObservationStatesFirstStateValidatorModel();
         }
 
         /// <summary>
-        /// Traffic light sealed observation sequence has red color at the end validation model instance obtaining method
+        /// <see cref="SealedObservationStatesLastStateValidatorModel">SealedObservationStatesLastStateValidatorModel</see> instance obtaining method.
         /// </summary>
-        /// <returns>New instance of traffic light sealed observation sequence has red color at the end validation model</returns>
-        public IValidator<List<ObservationModel>> CreateSealedObservationSequenceEndsByRedColorValidator()
+        /// <returns>New instance of <see cref="SealedObservationStatesLastStateValidatorModel">SealedObservationStatesLastStateValidatorModel</see>.</returns>
+        public IValidator<IList<ObservedObjectStateModel>> CreateSealedObservationStatesLastStateValidator()
         {
-            return new SealedObservationSequenceEndsByRedColorValidationModel();
-        }
-
-        /// <summary>
-        /// Traffic light sealed observation sequence has enough data validation model  instance obtaining method
-        /// </summary>
-        /// <returns>New instance of traffic light sealed observation sequence has enough data validation model </returns>
-        public IValidator<List<ObservationModel>> CreateSealedObservationSequenceHasEnoughDataValidator()
-        {
-            return new SealedObservationSequenceHasEnoughDataValidationModel();
+            return new SealedObservationStatesLastStateValidatorModel();
         }
     }
 }

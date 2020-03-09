@@ -1,54 +1,53 @@
-﻿namespace TrafficLightDataAnalyzer.Common
+﻿using System;
+using TrafficLightDataAnalyzer.Model.Observation.State.TrafficLight;
+using TrafficLightDataAnalyzer.Model.Observation.TrafficLight;
+
+namespace TrafficLightDataAnalyzer.Common
 {
     /// <summary>
-    /// Common strings values keeping class
+    /// Common/global string values keeping class.
     /// </summary>
     internal static class StringsKeeper
     {
         /// <summary>
-        /// Exception messages values keeping class
+        /// Exception messages values keeping class.
         /// </summary>
         internal static class ExceptionMessage
         {
             /// <summary>
-            /// No solution found exception message compution property
+            /// Invalid <see cref="Guid">GUID</see> string exception message computed property.
+            /// </summary>
+            public static string InvalidGuidFormat => "String has invalid GUID format";
+
+            /// <summary>
+            /// No solutions found exception message computed property.
             /// </summary>
             public static string NoSolution => "No solutions found";
 
             /// <summary>
-            /// Observation sequence is missing/incorrect one exception message compution property
+            /// <see cref="ObservationModel">ObservationModel</see> is not found (missing) one exception message computed property.
             /// </summary>
-            public static string MissingObservationSequence => "The sequence isn't found";
+            public static string ObservationNotFound => "The sequence isn't found";
 
             /// <summary>
-            /// Observation sequence is empty one exception message compution property
+            /// <see cref="ObservationModel">ObservationModel</see> is empty one exception message computed property.
             /// </summary>
-            public static string EmptyObservationsSequence => "There isn't enough data";
+            public static string ObservationIsEmpty => "There isn't enough data";
 
             /// <summary>
-            /// Observation sequence is already sealed one exception message compution property
+            /// <see cref="ObservationModel">ObservationModel</see> is already sealed one exception message computed property.
             /// </summary>
             public static string ObservationIsAlreadySealed => "The red observation should be the last";
 
             /// <summary>
-            /// Observation has invalid traffic light color format exception message compution property
+            /// <see cref="ObservedObjectStateModel">ObservedObjectStateModel</see> obtains invalid traffic light color exception message computed property.
             /// </summary>
-            public static string InvalidTrafficLightColor => "Observation has invalid traffic light color format";
+            public static string InvalidColorName => "Traffic light registered state has invalid color name";
 
             /// <summary>
-            /// Observation has invalid seven segment binary code string format exception message compution property
+            /// <see cref="ObservedObjectStateModel">ObservedObjectStateModel</see> obtains invalid 7-segment binary code string exception message computed property.
             /// </summary>
-            public static string InvalidDigitCode => "Observation has invalid digit code format";
-
-            /// <summary>
-            /// Observation has invalid seven segment binary codes strings amount exception message compution property
-            /// </summary>
-            public static string InvalidDigitCodesAmount => "Observation has invalid digit codes amount";
-
-            /// <summary>
-            /// Observation sequence has invalid GUID string format exception message compution property
-            /// </summary>
-            public static string InvalidGuidFormat => "Observation sequence has invalid GUID string format";
+            public static string Invalid7SegmentDigitCode => "Traffic light registered state has invalid 7-segment digit code";
         }
     }
 }
